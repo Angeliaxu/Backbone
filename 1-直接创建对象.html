@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script src="jquery-3.2.1.min.js"></script>
+        <script src="underscore.js"></script>
+        <script src="backbone.js"></script>
+        <script>
+            //创建对象
+            var model=new Backbone.Model();
+            var models=new Backbone.Collection();
+            var view =new Backbone.View();
+            //set设置数据
+            model.set("name",'hello');
+            model.set({title:'backbone',content:'lalalal'});
+
+            //模型集合对象把模型结合在一起,在模型里面传入对象，通过add方法添加模型对象
+            var model_1=new Backbone.Model({'name':'xiaoming'});
+            var model_2=new Backbone.Model({'name':'xiaohong'});
+            models.add(model_1);
+            models.add(model_2);
+            console.log(models);
+        </script>
+    </body>
+</html>

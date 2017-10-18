@@ -12,7 +12,7 @@
         //使用extends创建自己的model类,一参是创建实例方法，二参是创建静态方法
         var model=Backbone.Model.extend({
             say:function(){
-                console.log('i can say');
+                console.log(this);
             }
         },{
             run:function(){
@@ -24,9 +24,11 @@
         var m=new model({'name':'xiaohong'});
         console.log(m);
         m.say();
-        //对象的继承方式
+        //对象的继承方式,model1是一个构造函数
         var model1=model.extend();
-        model1继承model,model1的实例对象可以使用model下的实例方法
+        var n=new model1;
+        n.say();
+        //model1继承model,model1的实例对象可以使用model下的实例方法
     </script>
     </body>
 </html>

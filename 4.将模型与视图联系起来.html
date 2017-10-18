@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>将模型与视图联系起来</title>
+  </head>
+  <body>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="underscore.js"></script>
+    <script src="backbone.js"></script>
+    <script type="text/javascript">
+        var model=Backbone.Model.extend({
+          defaults:{
+            name:'Bob'
+          }
+        });
+        var view=Backbone.View.extend({
+          initialize:function(){
+            //listenTo和on的区别在与listenTo改变了this指向
+            this.listenTo(this.model,'change',this.show);
+          },
+          show:function(model){
+            $('body').append('<div>'+model.get('name')+'</div>')
+          }
+        })
+        var m=new model;
+        var v=new view({model:m});
+        m.set('name','angelia')
+    </script>
+  </body>
+</html>

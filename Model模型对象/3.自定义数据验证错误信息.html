@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+    var book=Backbone.Model.extend({
+      validate:function(data){
+        console.log(data)
+        if(data.price<1){
+          return '书籍价格不应低于1元'
+        }
+        return false;
+      }
+    })
+  var book1=new book({
+    price:50
+  });
+  book1.on('error',function(model,error){
+    console.log(error);
+  })
+  book1.set('price',0,{
+    error:function(model,error){
+      console.log('自定义错误'+error);
+    }
+  });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+
+    <script>
+      //Model就像是映射出来的一个数据对象，它可以对应到数据库中的某一条记录，并通过操作对象，将数据自动同步到服务器数据库。
+      var m=Backbone.Model.extend({
+        defaults:{
+          name:'unkonwn',
+          author:'unkonwn',
+          date:'unkonwn'
+        },
+        constructor:function(){
+          m.__super__.constructor.call(this);
+        }
+      });
+      console.dir(m);
+      // 不加constructor打印出来的东西是f child（）{}，加了constructor的打印出来的东西是f constructor（）{}
+      //get和escape的区别：get（）方法用于直接返回数据；escape（）方法现将数据中包含的html字符转换为实体形式，用于避免xss攻击
+      //数据直接存放于attributes属性中，可以通过获取attributes来获得这些数据
+
+      var book1=new m();
+      book1.on('change',function(){
+        console.log('change事件发生了');
+      })
+      //$1为 模型，$2为修改的最新数据，通过$1.previous()和$1.previousAttributes()可以获得未修改之前的数据，不同的是后者获取到的是上一个状态的所有数据
+      book1.on('change:name',function($1,$2){
+        console.log($1,$2);
+        console.log($1.previous('name'),$1.previousAttributes());
+        console.log('name发生变化了')
+      })
+      book1.on('change:author',function(){
+        console.log('author发生变化了')
+      })
+      book1.on('change:date',function($1,$2){
+          console.log($1.previous('name'),$1.previousAttributes());
+        console.log('date发生变化了')
+      })
+      book1.set({
+        name:'javascipt',
+        date:'today'
+      })
+      //通过set方法设置数据时，会触发change事件
+      //小细节：事件触发流程：属性事件触发->change事件触发
+      console.log(book1);
+    </script>
+  </body>
+</html>

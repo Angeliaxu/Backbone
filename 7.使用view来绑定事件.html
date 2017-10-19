@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-    <div class="box">1122</div>
+  <div id="con">
+    <div id="box">1122</div>
+  </div>
+
   <body>
     <script src="jquery-3.2.1.min.js"></script>
     <script src="underscore.js"></script>
@@ -12,11 +15,12 @@
     <script type="text/javascript">
       var view=Backbone.View.extend({
         events:{
-          'click .box':'read'
+          'click #box':'read'
         },
-        initialize: function (options) {
-                this.read();
-        },
+        el:'#con',
+        // initialize: function (options) {
+        //         this.read();
+        // },
         // render:function(){
         //
         // },
@@ -25,9 +29,9 @@
         }
       })
       var v=new view;
-      v.on('click',function(){
-        console.log('click');
-      })
+      // v.on('click',function(){
+      //   console.log('click');
+      // })
       // console.dir(_);
       // var us=_.noConflict();
       // console.dir(us);

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+      //数据验证,validate方法会在模型中的数据发送改变之前被自动调用，validdate接收一个参数，表示需要进行验证的数据结合
+      var book=Backbone.Model.extend({
+        validate:function(data){
+          console.log(data)
+          if(data.price<1){
+            return '书籍价格不应低于1元'
+          }
+        }
+      })
+    var book1=new book();
+    book1.on('invalid',function(model,error){
+      console.log(error);
+    })
+    book1.set({'price':0},{validate: true});
+    </script>
+  </body>
+</html>

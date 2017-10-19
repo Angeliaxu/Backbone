@@ -9,8 +9,8 @@
     <script src="../underscore.js"></script>
     <script src="../backbone.js"></script>
     <script type="text/javascript">
-    
 
+      //使用on可以来绑定自定义函数，使用trigger来触发函数，使用off来解绑函数
        var m=new Backbone.Model();
        m.on('custom',function(index){
          alert(index);

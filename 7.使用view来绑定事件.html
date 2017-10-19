@@ -14,11 +14,23 @@
         events:{
           'click .box':'read'
         },
+        initialize: function (options) {
+                this.read();
+        },
+        // render:function(){
+        //
+        // },
         read:function(){
           console.log(111);
         }
       })
       var v=new view;
+      v.on('click',function(){
+        console.log('click');
+      })
+      // console.dir(_);
+      // var us=_.noConflict();
+      // console.dir(us);
     </script>
   </body>
 </html>

@@ -19,7 +19,14 @@
         使用extend改写模型的构造函数
         entend的第一个参数是扩展实例方法
         二参是扩展静态方法
- 6.default：{}默认的参数
-    initialize：初始化构造函数
+ 6. default：{}默认的参数；initialize：初始化构造函数
+ 7. 事件中的trigger和on，使用on来绑定自定义事件，使用trigger来触发事件，使用off来解绑事件。
+    `var m=new Backbone.Model;
+     　　m.on('custom',function(){
+    　　　console.log(1);
+    }
+　　m.trigger('custom');
+　　m.off('custom');`    
+
 
      

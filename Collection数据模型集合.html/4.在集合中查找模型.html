@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+    //使用个get（）方法，通过cid或者id获取相应的数据模型
+      var book=Backbone.Model.extend({
+        defaults:{
+          name:'',
+          price:0
+        }
+      })
+      //定义初始化数据
+      var data=[{
+        id:1,
+        name:'h1',
+        price:10
+      },{
+        name:'h2',
+        price:20
+      },{
+        name:'h3',
+        price:30
+      },{
+        id:'10001',
+        name:'h4',
+        price:40
+      }];
+      //创建集合对象
+      var books=new Backbone.Collection(data,{
+        model:book
+      })
+      console.log(books.get('10001'));
+    </script>
+  </body>
+</html>

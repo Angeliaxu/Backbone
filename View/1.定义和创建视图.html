@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <div title="列表" style="color:red;" id="list" class="listview"></div>
+      <script src="../jquery-3.2.1.min.js"></script>
+      <script src="../underscore.js"></script>
+      <script src="../backbone.js"></script>
+      <script type="text/javascript">
+      //动态创建元素，若无指明tagName类型，默认为div。通过attributes来设置元素属性
+      //可以在视图内部通过this.el来访问所关联的DOM对象
+      var listview=Backbone.View.extend({
+        tagName:'div',
+        className:'listview',
+        attributes:{
+          title:'列表',
+          style:'color:red'
+        },
+        initialize:function(){
+          this.render();
+        },
+        render:function(){
+          this.el.innerHTML="HELLO";
+          document.body.appendChild(this.el);
+        }
+      })
+      var view =new listview;
+      console.dir(listview)
+      </script>
+  </body>
+</html>

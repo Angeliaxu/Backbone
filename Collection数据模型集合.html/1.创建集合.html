@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+    //定义模型类
+      var book=Backbone.Model.extend({
+        defaults:{
+          name:''
+        }
+      })
+      // 定义集合类
+      var booklist=Backbone.Collection.extend({
+        model:book
+      })
+      var book1=new book({
+        name:'java'
+      })
+      var book2=book1.clone();
+      book2.set({
+        name:'node'
+      });
+      var book3=book1.clone();
+      book3.set({
+        name:'http'
+      })
+      var booklist1=new booklist([book1,book2,book3]);
+      console.log(booklist1);
+
+      //另一种写法
+
+      var models=[{
+        name:'1'
+      },{
+        name:'2'
+      },{
+        name:'3'
+      }
+    ]
+    var booklist2=new Backbone.Collection(models,{
+      model:book
+    })
+    console.log(booklist2);
+    console.log(book)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+        //集合类提供3个方法用于从集合中移除模型对象：remove（）：从集合中移除一个或多个指定的模型对象
+        //pop（）：移除集合尾部的一个模型对象
+        //shift（）；移除集合头部的一个模型对象
+        //当模型移除成功之后，会触发集合对象的remove事件
+      var book=Backbone.Model.extend({
+        defaults:{
+          name:'',
+          price:0
+        }
+      })
+      //定义初始化数据
+      var data=[{
+        name:'h1',
+        price:10
+      },{
+        name:'h2',
+        price:20
+      },{
+        name:'h3',
+        price:30
+      },{
+        name:'h4',
+        price:40
+      }];
+      //创建集合对象
+      var books=new Backbone.Collection(data,{
+        model:book
+      })
+      books.pop();
+      books.shift();
+      books.remove(books.models[1])
+      console.log(books);
+
+    </script>
+  </body>
+</html>

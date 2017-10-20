@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+      //定义一个模型类,unshift往数据集合模型的头部添加数据模型，push是在尾部添加，add若指定位置则在指定位置添加，没有的话默认尾部添加，使用at参数可以指定位置 进行操作
+      var book=Backbone.Model.extend({
+        defaults:{
+          name:'',
+          price:0
+        }
+
+      })
+      var books =new Backbone.Collection(null,{
+        model:book
+      })
+      books.push({
+        name:'java',
+        price:50
+      })
+      books.unshift({
+        name:'java1',
+        price:50
+      })
+      books.add({
+        name:'java3',
+        price:100
+      },{
+        at:1
+      })
+      books.push({
+        name:"java4",
+        price:30
+      },{
+        at:1
+      })
+      console.log(books)
+    </script>
+  </body>
+</html>

@@ -26,25 +26,28 @@
         }
       }),
       Gist=new gist;
-
+      var singal=Backbone.View.extend({
+        tagName:'tr',
+        render:function(object){
+          var model=new gist(object);
+          this.el.innerHTML='<td>'+model.get('description')+'</td><td>'+model.get('url')+'</td><td>'+model.get('created_at')+'</td>';
+          return this;
+        }
+      })
       var gistRow=Backbone.View.extend({
         el:'tbody',
         model:Gist,
-        events:{
-          'click a':'replaceurl'
-        },
-        replaceurl:function(){
-          this.model.set('url','http://dmyz.org');
-        },
         initialize:function(){
-          console.log(this);
           this.listenTo(this.model,'change',this.render);
         },
         render:function(){
-          var model=this.model;
-          tr=document.createElement('tr');
-          tr.innerHTML='<td>'+model.get('description')+'</td><td>'+model.get('url')+'</td><td>'+model.get('created_at')+'</td><td><a href="javascript:void(0)" rel="external nofollow" rel="external nofollow" rel="external nofollow" >®</a></td>';
-          this.el.innerHTML=tr.outerHTML;
+          var html='';
+          _.forEach(this.model.attributes,function(object){
+            var tr=new singal;
+            html+=tr.render(object).el.outerHTML;
+          })
+
+          this.el.innerHTML=html;
           return this;
         }
 

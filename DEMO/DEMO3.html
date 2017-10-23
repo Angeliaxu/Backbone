@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <table id="js-id-gists" class="table">
+      <thead>
+        <th>description</th>
+        <th>url</th>
+        <th>created_at</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../underscore.js"></script>
+    <script src="../backbone.js"></script>
+    <script type="text/javascript">
+    //listenTo在这里绑定在view身上去监听Gist这个对象是否发生改变，当点击之后更新数据，就会触发change事件
+      var gist=Backbone.Model.extend({
+        url:"https://api.github.com/gists/public",
+        parse:function(response){
+          return response[0];
+        }
+      }),
+      Gist=new gist;
+      var gistRow=Backbone.View.extend({
+        el:'tbody',
+        model:Gist,
+        events:{
+          'click a':'replaceurl'
+        },
+        replaceurl:function(){
+          this.model.set('url','http://dmyz.org');
+        },
+        initialize:function(){
+          console.log(this);
+          this.listenTo(this.model,'change',this.render);
+        },
+        render:function(){
+          var model=this.model;
+          tr=document.createElement('tr');
+          tr.innerHTML='<td>'+model.get('description')+'</td><td>'+model.get('url')+'</td><td>'+model.get('created_at')+'</td><td><a href="javascript:void(0)" rel="external nofollow" rel="external nofollow" rel="external nofollow" >®</a></td>';
+          this.el.innerHTML=tr.outerHTML;
+          return this;
+        }
+
+      })
+    var tr=new gistRow;
+    Gist.fetch();
+    </script>
+  </body>
+</html>
